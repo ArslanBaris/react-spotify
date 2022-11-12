@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import DiscoverBlock from './DiscoverBlock/components/DiscoverBlock';
 import '../styles/_discover.scss';
 
+import {
+  getAccessToken,
+  getNewReleases,
+  getFeaturedPlayLists,
+  getCategories
+} from '../../../services/service';
 //TODO: Fix `any` types here
 
-interface IDiscoverProps {}
+interface IDiscoverProps { }
 
 interface IDiscoverState {
   newReleases: Array<any>;
@@ -21,12 +27,29 @@ export default class Discover extends Component<IDiscoverProps, IDiscoverState> 
       playlists: [],
       categories: []
     };
+
+
   }
 
-  //TODO: Handle APIs
+  async componentDidMount() {
+    await getAccessToken();
+    const newReleases = await getNewReleases();
+    const playlists = await getFeaturedPlayLists()
+    const categories = await getCategories()
+    
+   
+    this.setState({
+      newReleases: newReleases,
+      playlists: playlists,
+      categories: categories
+    })
+
+  }
 
   render() {
+
     const { newReleases, playlists, categories } = this.state;
+
 
     return (
       <div className="discover">
@@ -37,3 +60,10 @@ export default class Discover extends Component<IDiscoverProps, IDiscoverState> 
     );
   }
 }
+
+
+//   async componentDidMount() {
+//   const token = await getToken();
+//   const songsList = await fetchAllSongs(token);
+//   this.setState(songsList);
+// }
