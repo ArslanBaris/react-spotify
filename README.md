@@ -1,3 +1,9 @@
+# React Spotify Template 
+
+  ![](https://raw.github.com/ArslanBaris/react-spotify/master/screenshot.png)
+
+- Application available on [Netlify](https://dazzling-maamoul-e75bb6.netlify.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
